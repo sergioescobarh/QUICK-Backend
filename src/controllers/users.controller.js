@@ -1,5 +1,5 @@
 //fetching models
-const {User} = require('../../models');
+const User = require('../../models').User
 
 const usersController = {
     //listar usuarios
@@ -8,10 +8,16 @@ const usersController = {
         await res.send(showUsers);
     },
     register: async (req,res) => {
-        const newUser = await {...req.body}
-        try {await User.create(newUser);
-        await res.status(200).send(newUser)}
-        catch{ console.error(error);}
+        const newUser = {
+            ...req.body}
+            console.log(newUser);
+            try {
+                await User.create(newUser);
+                await res.status(200).json(newUser);
+              } catch (error) {
+                console.error(error);
+                res.status(500).send('Error creating user');
+              }
     }
 };
 

@@ -7,6 +7,6 @@ console.log(usersController);
 //CRUD
 router.get('/',(req,res)=>res.send('Hi users!!!'));
 router.get('/list', usersController.show);
-router.post('/register', usersController.register);
+router.post('/', usersController.register);
 
 module.exports = router;
